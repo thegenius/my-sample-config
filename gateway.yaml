@@ -1,0 +1,19 @@
+zuul:
+  routes:
+    hello-service:
+      path: /hello
+      #      serviceId: microservice-provider-user
+      url: http://localhost:9901
+
+  ratelimit:
+    enabled: true
+    behind-proxy: true
+    repository: bucket4j_jcache
+    default-policy-list:
+    - limit: 10
+      quota: 1000
+      refresh-interval: 60
+      type:
+      - user
+      - origin
+      - url
